@@ -19,6 +19,8 @@ La aplicación se puede usar de la siguiente manera:
 ## Funcionalidades
 
 1. Creación de tareas
+2. Edición de tareas
+3. Eliminación de tareas
+4. Marcado de tareas como completadas
 
-2. Eliminación de tareas
 # ToDo-React
