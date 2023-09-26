@@ -1,7 +1,8 @@
 import todoLogo from "../../assets/todoLogo.svg";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useState } from "react";
-import styles from "./Header.css";
+
+import styles from "./Header.css?inline";
 
 //Componente Header
 export function Header({ handleAddTask }) {

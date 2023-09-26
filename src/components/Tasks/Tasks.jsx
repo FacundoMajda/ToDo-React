@@ -1,38 +1,55 @@
-import { Task } from "../Task/Task";
-import styles from "./Tasks.css";
+import React from "react";
+import { BsFillCheckCircleFill } from "react-icons/bs";
+import { TbTrash } from "react-icons/tb";
+import { toast } from "sonner";
+import styles from "./Tasks.css?inline";
 
-// Componente Tasks
+// Componente Task
 export function Tasks({ tasks, onDelete, onComplete }) {
-  const tasksQuantity = tasks.length;
-  const completedTasks = tasks.filter((task) => task.isCompleted).length;
+  // Renderiza un boton
+  function renderCheckButton(task) {
+    const handleComplete = () => {
+      onComplete(task.id);
+    };
 
-  // Renderiza la lista de tareas.
+    return (
+      <button className={styles.checkContainer} onClick={handleComplete}>
+        {task.isCompleted ? <BsFillCheckCircleFill /> : <div />}
+      </button>
+    );
+  }
+
+  // Renderiza el title de la tarea
+  function renderTitle(task) {
+    return (
+      <p className={task.isCompleted ? styles.textCompleted : ""}>
+        {task.title}
+      </p>
+    );
+  }
+
+  // Renderiza el boton 'trash'
+  function renderDeleteButton(task) {
+    const handleDelete = () => {
+      onDelete(task.id);
+    };
+
+    return (
+      <button className={styles.deleteButton} onClick={handleDelete}>
+        <TbTrash size={20} />
+      </button>
+    );
+  }
+
   return (
-    <section className={styles.tasks}>
-      <header className={styles.header}>
-        <div>
-          <p>Tareas Creadas:</p>
-          <span>{tasksQuantity}</span>
+    <div className="task-button">
+      {tasks.map((task) => (
+        <div key={task.id} className={styles.task}>
+          {renderCheckButton(task)}
+          {renderTitle(task)}
+          {renderDeleteButton(task)}
         </div>
-
-        <div>
-          <p className={styles.textPurple}>Tareas Completadas</p>
-          <span>
-            {completedTasks} de {tasksQuantity}
-          </span>
-        </div>
-      </header>
-
-      <div className={styles.list}>
-        {tasks.map((task) => (
-          <Task
-            key={task.id}
-            task={task}
-            onDelete={onDelete}
-            onComplete={onComplete}
-          />
-        ))}
-      </div>
-    </section>
+      ))}
+    </div>
   );
 }
