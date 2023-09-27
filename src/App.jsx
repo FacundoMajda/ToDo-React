@@ -19,7 +19,6 @@ function App() {
         toast.success("Tareas cargadas con éxito");
       }
     } catch (error) {
-     
       console.error("Error al cargar las tareas:", error.message);
       toast.error("Error al cargar las tareas.");
     }
@@ -32,7 +31,6 @@ function App() {
       localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newTasks));
       // toast.success("Tareas guardadas con éxito");
     } catch (error) {
-
       console.error("Error al guardar las tareas:", error.message);
       toast.error("Error al guardar las tareas.");
     }
@@ -65,7 +63,7 @@ function App() {
     try {
       const newTasks = tasks.filter((task) => task.id !== taskId);
       setTasksAndSave(newTasks);
-      toast.success("Tarea eliminada con éxito");
+      toast.error("Tarea eliminada con éxito");
     } catch (error) {
       console.error("Error al eliminar la tarea:", error.message);
       toast.error("Error al eliminar la tarea.");
@@ -100,7 +98,7 @@ function App() {
         onDelete={deleteTaskById}
         onComplete={toggleTaskCompletedById}
       />
-      <Toaster />
+      <Toaster richColors />
     </>
   );
 }
